@@ -8,7 +8,7 @@ router = Router()
 
 @router.message(CommandStart())
 async def process_start_command(message: Message):
-    await message.answer(text=LEXICON_RU['/start'])
+    await message.answer(text=LEXICON_RU['/start'].format(message.chat.first_name))
 
 
 @router.message(Command(commands='help'))
