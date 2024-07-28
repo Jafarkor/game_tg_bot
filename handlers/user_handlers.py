@@ -36,5 +36,5 @@ async def procees_stop_playing(message: Message):
 async def procees_player_selected(message: Message):
     result = bot_choise(message.text)
     await message.answer(text=result[0])
-    await message.answer(text=LEXICON_RU[result[1]].format(message.text, result[0]),
+    await message.answer(text=LEXICON_RU[result[1]],
                          reply_markup=start_keyboard)
