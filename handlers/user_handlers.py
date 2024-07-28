@@ -28,11 +28,13 @@ async def procees_start_playing(message: Message):
 
 @router.message(F.text == 'Не хочу!')
 async def procees_stop_playing(message: Message):
-    await message.answer(text=LEXICON_RU['stop_playing'])
+    await message.answer(text=LEXICON_RU['stop_playing'],
+                         reply_markup=start_keyboard)
 
 
 @router.message(F.text.in_({'🪨', '✂️', '📄'}))
 async def procees_player_selected(message: Message):
     result = bot_choise(message.text)
     await message.answer(text=result[0])
-    await message.answer(text=LEXICON_RU[result[1]].format(message.text, result[0]))
+    await message.answer(text=LEXICON_RU[result[1]].format(message.text, result[0]),
+                         reply_markup=start_keyboard)
