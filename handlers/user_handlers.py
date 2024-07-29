@@ -2,9 +2,9 @@ from aiogram.types import Message
 from aiogram.filters import Command, CommandStart
 from aiogram import Router, F
 
-from lexicon.lexicon import LEXICON_RU
+from lexicon.lexicon import LEXICON_RU, ANSWERS_RU
 from keyboards.keyboards import start_keyboard, playing_keyboard
-from servises.servises import bot_choise
+from servises.servises import bot_choise, bot_answer
 
 router = Router()
 
@@ -36,5 +36,5 @@ async def procees_stop_playing(message: Message):
 async def procees_player_selected(message: Message):
     result = bot_choise(message.text)
     await message.answer(text=result[0])
-    await message.answer(text=LEXICON_RU[result[1]],
+    await message.answer(text=bot_answer(result[1], ANSWERS_RU),
                          reply_markup=start_keyboard)
